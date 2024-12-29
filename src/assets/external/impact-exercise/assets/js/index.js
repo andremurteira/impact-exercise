@@ -1,4 +1,4 @@
-define(["jquery", "knockout"], function ($, ko) {
+define(["jquery", "knockout", "bootstrap"], function ($, ko, bootstrap) {
   function beerCreated(error = false, data) {
     const message = { status: error ? 'error' :'success', beer: data};
     window.parent.postMessage(message, '*');

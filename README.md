@@ -1,27 +1,21 @@
 # BrewVault
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+I opted for an Angular app since is the main framework I've been working in recent years. I also used PrimeNG, a framework of Angular components to help in the elements display.
 
-## Development server
+This app consists of a list of Beers fetched from an API. In this list the user has two view options (list and grid) and he also has the possibility to filter beers by type, and sort them by name or date.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The user can also access the Detail view for each beer by clicking on it.
 
-## Code scaffolding
+The user can create is own collection of beers by clicking in the "heart" icon visible in each list item. The collection is saved in the browser's localStorage and can be accessed in the top right menu.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The user can add new Beers to the database so I chose to try to integrate a Knockout component within Angular. The form for creating new Beers is a Knockout component inside an iframe that comunicates to the Angular app each time it tries to create a new Beer. Then the Angular app handles all the next steps such as success/errors notifications and routing.
 
-## Build
+## Images
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The https://mockapi.io/ API was generating always the same image for every beer so I used Faker.js to generate the images for the base DB. In the first run a request is made using Faker.js to get an image for each beer in the API. After that, those images are saved in localStorage and loaded from there when needed. The new beers created by the user include an image URL and that image will not be replaced by the Faker.js request.
 
-## Running unit tests
+## Run the App
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Node v18.19.0 needed (might work with newer versions)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+After cloning the project we need to run `npm install`. After all the packages are installed we run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
