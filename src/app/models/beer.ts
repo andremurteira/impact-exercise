@@ -1,5 +1,3 @@
-import { Comment } from "./comment";
-
 export class Beer {
   id: number = -1;
   name: string = '';
