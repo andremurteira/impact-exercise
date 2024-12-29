@@ -1,0 +1,26 @@
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+img{
+  width: 100%;
+}
+.add-new-container{
+  text-align: left;
+  padding: 0px 32px;
+}
+h2{
+  margin: 32px 0px;
+}
+button.btn-primary{
+  font-family: 'Inter var', sans-serif;
+  background-color: #d8d5cb !important;
+  border-color: #d8d5cb !important;
+  color: #1a1812 !important;
+  border: 1px solid #3B82F6;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+  font-weight: 700;
+}

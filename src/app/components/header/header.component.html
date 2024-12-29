@@ -1,0 +1,9 @@
+<header>
+  <a [routerLink]="['/']" class="logo-container">
+    <img src="assets/img/logo.webp" alt="BrewVault logo">
+  </a>
+  <div class="user-menu">
+    <p-menu #menu [model]="items" [popup]="true" [appendTo]="'body'"/>
+    <p-button (onClick)="menu.toggle($event)" icon="pi pi-user"/>
+  </div>
+</header>

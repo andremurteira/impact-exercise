@@ -1,0 +1,57 @@
+<div class="card">
+  <p-toast />
+  <div class="options-container">
+    <p-button label="Create new beer" (click)="addNew()" icon="pi pi-plus" aria-label="Create new beer" />
+  </div>
+  <p-dataView #dataview [value]="filteredBeers" (onSort)="handleSort($event)" [layout]="layout()" [emptyMessage]="isCollectionPage() ? 'There are no beers in your collection': 'There are no beers in the database'" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="ROWS_PER_PAGE">
+    <ng-template pTemplate="header">
+      <div class="flex flex-row justify-content-between" *ngIf="filteredBeers.length > 0">
+        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort" (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0" />
+        <p-multiSelect 
+          [options]="beerTypes" 
+          [(ngModel)]="selectedTypes" 
+          optionLabel="name"
+          ariaLabel="Filter by type"
+          (onChange)="changedTypes($event)"
+          placeholder="Filter by type"
+        />
+        <p-dataViewLayoutOptions />
+      </div>
+    </ng-template>  
+    <ng-template pTemplate="list" let-beers>     
+      <div class="list-container"> 
+        <ng-container [ngTemplateOutlet]="commonTemplate" [ngTemplateOutletContext]="{beers: beers}"></ng-container>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="grid" let-beers>
+      <div class="grid-container">
+        <ng-container [ngTemplateOutlet]="commonTemplate" [ngTemplateOutletContext]="{beers: beers}"></ng-container>        
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>
+
+<ng-template #commonTemplate let-beers='beers'>
+  <div class="grid">
+    <div class="grid-element" (click)="viewDetail(beer.id)" *ngFor="let beer of beers, let rowIdx = index">      
+      <div class="image-container">
+        <img [src]="beer.image" [alt]="beer.name">
+      </div>
+      <div class="text-content">
+        <div>
+          <h4>{{beer.name}}</h4>
+          <p><b>Type: </b>{{beer.type}}</p>
+          <p><b>Year: </b>{{beerService.getBeerYear(beer.date)}}</p>
+        </div>
+        <div class="actions-container">
+          <div class="flex align-items-center" *ngIf="!isInCollection(beer.id);">
+            <p-button icon="pi pi-heart" [outlined]="false" (click)="addToCollection(beer.id,$event)" />
+          </div>
+          <div class="flex align-items-center" *ngIf="isInCollection(beer.id);">
+            <p-button icon="pi pi-heart-fill" [outlined]="false" (click)="removeFromCollection(beer.id,$event)"/>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

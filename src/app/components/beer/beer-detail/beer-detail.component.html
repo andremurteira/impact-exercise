@@ -1,0 +1,7 @@
+<div class="detail-container" *ngIf="beer">
+  <img [attr.src]="beer.image ?? beerService.getImageById(beer.id)" [attr.alt]="beer.name">
+  <h2><span>{{beer.name}}</span> - <span>{{beerService.getBeerYear(beer.date)}}</span></h2>
+  <h4>Type: <span>{{beer.type}}</span></h4>
+  <hr>
+  <p>{{beer.description}}</p>
+</div>

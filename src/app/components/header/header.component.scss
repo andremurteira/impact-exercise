@@ -1,0 +1,27 @@
+@import '../../../variables.scss';
+
+header{
+  height: 100px;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  background: $base-color;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  padding: 0px 64px;
+  z-index: 2;
+  .logo-container{
+    display: contents;
+  }
+  @media(max-width: 767px){
+    height: 100px;
+  }
+}
+.p-menu {
+  .p-menuitem-badge{
+    background: $base-color;
+  }
+}
