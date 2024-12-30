@@ -1,5 +1,7 @@
 # BrewVault
 
+https://brew-vault.netlify.app/
+
 I opted for an Angular app since is the main framework I've been working in recent years. I also used PrimeNG, a framework of Angular components to help in the elements display.
 
 This app consists of a list of Beers fetched from an API. In this list the user has two view options (list and grid) and he also has the possibility to filter beers by type, and sort them by name or date.
