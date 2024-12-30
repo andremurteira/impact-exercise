@@ -14,6 +14,10 @@ The user can add new Beers to the database so I chose to try to integrate a Knoc
 
 The https://mockapi.io/ API was generating always the same image for every beer so I used Faker.js to generate the images for the base DB. In the first run a request is made using Faker.js to get an image for each beer in the API. After that, those images are saved in localStorage and loaded from there when needed. The new beers created by the user include an image URL and that image will not be replaced by the Faker.js request.
 
+## Name and Logo
+
+I asked ChatGPT for some site names related with beer collections and then I required a logo for the name I picked.
+
 ## Run the App
 
 - Node v18.19.0 needed (might work with newer versions)
