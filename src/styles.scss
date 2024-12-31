@@ -30,3 +30,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .p-button:focus-visible{
   box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #9dc1fb, 0 1px 2px 0 black !important;
 }
+.p-rating:not(.p-disabled):not(.p-readonly) .p-rating-item:hover .p-rating-icon,
+.p-rating .p-rating-item.p-rating-item-active .p-rating-icon{
+  color: $base-color !important;
+}
+.p-toast .p-toast-message .p-toast-message-content .p-toast-detail{
+  word-break: break-all;
+}

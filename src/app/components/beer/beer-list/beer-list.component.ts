@@ -13,11 +13,13 @@ import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { RatingModule } from 'primeng/rating';
+import { catchError, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-beer-list',
   standalone: true,
-  imports: [CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, DataViewModule, ToastModule, TooltipModule, DropdownModule, MultiSelectModule],
+  imports: [CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, DataViewModule, ToastModule, TooltipModule, DropdownModule, MultiSelectModule, RatingModule],
   encapsulation: ViewEncapsulation.None,
   providers: [MessageService],
   templateUrl: './beer-list.component.html',
@@ -107,6 +109,24 @@ export class BeerListComponent implements OnInit {
         )
       );
       this.assignBeers(this.allBeers);
+    });
+  }
+
+  rateBeer(beer: Beer, event: any){
+    event.originalEvent.stopPropagation();
+    event.originalEvent.preventDefault();
+    this.beerService.addBeerRating(beer, event.value).pipe(
+      takeUntilDestroyed(this.destroyRef),
+      catchError(err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err.message});
+        beer.ratings = beer.ratings;
+        beer.rating = (beer.ratings.reduce((sum, val) => sum + val, 0))/beer.ratings.length;
+        return EMPTY;
+      })
+    ).subscribe(res => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Beer rated successfully!' });
+      beer.ratings = res.ratings;
+      beer.rating = (res.ratings.reduce((sum, val) => sum + val, 0))/res.ratings.length;
     });
   }
 

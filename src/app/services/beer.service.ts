@@ -81,5 +81,11 @@ export class BeerService {
     return false;
   }
 
-
+  addBeerRating(beer: Beer, rating: number): Observable<Beer> {
+    const newRatings = beer.ratings.slice();
+    newRatings.push(rating);
+    const newRating = (newRatings.reduce((sum, val) => sum + val, 0))/newRatings.length;
+    const url = `${this.BASE_API}/list/${beer.id}`;
+    return this.httpClient.put<Beer>(url, {...beer, ratings: newRatings, rating: newRating});
+  }
 }

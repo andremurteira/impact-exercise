@@ -1,7 +1,9 @@
+<p-toast />
 <div class="detail-container" *ngIf="beer">
   <img [attr.src]="beer.image ?? beerService.getImageById(beer.id)" [attr.alt]="beer.name">
   <h2><span>{{beer.name}}</span> - <span>{{beerService.getBeerYear(beer.date)}}</span></h2>
   <h4>Type: <span>{{beer.type}}</span></h4>
+  <div><p-rating (onRate)="rateBeer(beer,$event)" [(ngModel)]="beer.rating" [cancel]="false"/></div>
   <hr>
   <p>{{beer.description}}</p>
 </div>

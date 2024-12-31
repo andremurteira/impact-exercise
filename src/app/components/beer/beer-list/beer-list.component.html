@@ -42,6 +42,7 @@
           <h4>{{beer.name}}</h4>
           <p><b>Type: </b>{{beer.type}}</p>
           <p><b>Year: </b>{{beerService.getBeerYear(beer.date)}}</p>
+          <div><p-rating (onRate)="rateBeer(beer,$event)" [(ngModel)]="beer.rating" [cancel]="false"/></div>
         </div>
         <div class="actions-container">
           <div class="flex align-items-center" *ngIf="!isInCollection(beer.id);">
