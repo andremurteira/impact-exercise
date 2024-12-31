@@ -35,5 +35,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: $base-color !important;
 }
 .p-toast .p-toast-message .p-toast-message-content .p-toast-detail{
-  word-break: break-all;
+  word-break: break-word;
 }

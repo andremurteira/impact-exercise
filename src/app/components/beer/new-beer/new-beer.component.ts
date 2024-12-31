@@ -62,7 +62,6 @@ export class NewBeerComponent implements OnInit {
       rejectIcon: 'pi pi-times mr-2',
       accept: () => {
         this.beerService.addToCollection(beer.id);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Beer added to your collection!' });
         this.router.navigate(['/my-collection']);
       },
       reject: () => {
